@@ -7,13 +7,80 @@ code {
   color: #E01A76;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+body{
+  background-color: green;
+  margin-left: 850px;
+  margin-right: 300px;
+  width: 200px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.welcome-text{
+  font-size: 34px;
+  color: green;
+  text-align: center;
+  font-stretch: expanded;
+  position: absolute;
+  right: 350px;
+  top: 150px;
+  border: white 5px solid;
+  background-color: white;
+  animation: fadeInDelay 2s;
 }
 
 .home-Page {
-  color:#0366d6;
   align-items: center;
+}
+
+.name {
+  color: black;
+  background-color: white;
+  position: absolute;
+  bottom: 300px;
+  right: 300px;
+  animation: fadeInDelay 3s;
+}
+
+.container {
+  width: 300px;
+  height: 250px;
+  color: green;
+  background-color: yellow;
+  /* Center child horizontally*/
+  display: flex;
+  align-items: center;
+  animation: fadeIn 2s;
+  position: absolute;
+  left: 350px;
+}
+
+.login-button{
+  border-radius: 15px;
+  color: white;
+  position: absolute;
+  bottom: 300px;
+  right: 425px;
+  animation: fadeInDelay 3s;
+
+}
+
+.child {
+  font-size: 80px;
+  width: 500px;
+  height: 150px;
+  display: flex;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeInDelay {
+    0% {opacity: 0;}
+    66% {opacity: 0;}
+    100% {opacity: 1;}
 }
