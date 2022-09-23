@@ -8,24 +8,25 @@ code {
 }
 
 body{
-  background-color: green;
-  margin-left: 850px;
+  background-color: rgb(27, 86, 51);
+ /* margin-left: 850px;
   margin-right: 300px;
   width: 200px;
   height: 500px;
   display: flex;
   align-items: center;
   justify-content: right;
+  */
 }
 
 .welcome-text{
   font-size: 34px;
-  color: green;
+  color: rgb(27, 86, 51);
   text-align: center;
   font-stretch: expanded;
   position: absolute;
   right: 350px;
-  top: 150px;
+  top: 175px;
   border: white 5px solid;
   background-color: white;
   animation: fadeInDelay 2s;
@@ -47,14 +48,15 @@ body{
 .container {
   width: 300px;
   height: 250px;
-  color: green;
-  background-color: yellow;
+  color: rgb(27, 86, 51);
+  background-color: rgb(255, 198, 41);;
   /* Center child horizontally*/
   display: flex;
   align-items: center;
   animation: fadeIn 2s;
   position: absolute;
   left: 350px;
+  top: 150px;
 }
 
 .login-button{
