@@ -1,16 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import './custom.css'
 import Portal from './Portal';
+import FormPrototype from './Components/formPrototype';
+import { googleFormsToJson, GoogleFormProvider, useGoogleForm, useCheckboxInput} from 'react-google-forms-hooks'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+//Dakota- This is the json for the Google Form at this link https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform
+//NOTE HERE- For the json object, I have no idea what fvv, pageHistory, fbzx, or action means. I copied and pasted from an example I found here,
+// https://codesandbox.io/s/charming-yonath-lh9kpy?file=/src/form.json however I noticed between the different examples that these values changed.
+//I've tried Googling them with no avail, hopefully we can remove them without an isue...
+import form from './form.json';
+import styled from "styled-components";
+
+
+//Dakota-An example I saw online had these style options, just ignore them for the time being
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CheckboxContainer = styled.div`
+  display: flex;
+
+  & label {
+    margin: 0 10px;
+  }
+`;
 
 //const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
 
 //      <div className = 'login-button'>
 //<button>Create Form (Login with Google)</button>
 //</div>
-
 
 function SignInPage(){
   const [ profile, setProfile ] = useState([]);
@@ -78,13 +103,96 @@ function SignInPage(){
     );
   }
 }
-  
+//Dakota- The react components for CheckBoxes, from all the examples I've seen the programmer would set his components up with labels and registers
+//the registers would hold an input value and they would use the hook, in this case userCheckboxInput, with the id relating to the Google Form
+//json object to I believe "connect" the two.
+/*function CheckBox({id})
+{
+  const {} = useCheckboxInput(id);
+  return(
+    
+    
+      <div className="mb-3">
+        <Form.Check 
+          type="checkbox"
+          id={id}
+          label={'Yes'}
+        />
+        <Form.Check 
+          type="checkbox"
+          id={id}
+          label={`Double Yes`}
+        />
+   
+      </div>
+    
+    
+  )
+}*/
+
+//Dakota- This is an example I found online, link is https://codesandbox.io/s/charming-yonath-lh9kpy?file=/src/form.json
+//Another good example is https://codesandbox.io/s/jb3hy which is a wedding invitation/form
+function CheckboxInput({ id }) {
+  const { options } = useCheckboxInput(id);
+
+  return (
+    <Container>
+      {options.map((o) => (
+        <CheckboxContainer key={o.id}>
+          <input type="checkbox" id={o.id} {...o.registerOption()} />
+          <label htmlFor={o.id}>{o.label}Hello</label>
+        </CheckboxContainer>
+      ))}
+    </Container>
+  );
+}
+
+//Dakota- This function would be our form/survey. We send our form object we retrieved from the createField() function in our App() in the 
+//useGoogleForm() hook. We also have an onSubmit that will submit the data to the Google forms
+function CheckExample() {
+
+const methods = useGoogleForm({form})
+const onSubmit = async (data) => 
+{
+    await methods.submitToGoogleForms(data);
+      
+}
+  return (
+    <GoogleFormProvider>
+    <Form onSubmit = {methods.handleSubmit(onSubmit)}>
+      <header>Do you want to develop an app?</header>
+      <CheckboxInput id = '807685397'/>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+    </GoogleFormProvider>
+  );
+}
+
+
 function App() {
+
+//Dakota- This fucntion converts the Google form at the link to json and posts it in the console of the webpage
+async function createField(){
+const result = await googleFormsToJson(
+  "https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform"
+)
+
+console.log(result.fields)
+}
+createField();
+
+
 
   return (
       <Routes>
         <Route path = "/" element={<SignInPage />}/>
+        {/*Dakota- Warning, /form will give errors*/}
+        <Route path = "/form" element = {<CheckExample/>}/>
+        <Route path = "/formProto" element = {<FormPrototype/>}/>
         <Route path = '/portal' element ={<Portal />} />
+        
       </Routes>
 
   );
