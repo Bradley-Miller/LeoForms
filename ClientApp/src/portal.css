@@ -2,6 +2,9 @@
     position: absolute;
     left: 625px;
     top:500px;
+    border: 5px rgb(27, 86, 51);
+    background-color: azure;
+
 }
 
 .header{
@@ -10,4 +13,8 @@
     background: rgb(255, 198, 41);
     color: rgb(27, 86, 51);
     font-size: 30px;
+}
+
+.New-Form{
+    top: 400px;
 }
