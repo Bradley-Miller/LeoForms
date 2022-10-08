@@ -25,7 +25,7 @@ body{
   text-align: center;
   font-stretch: expanded;
   position: absolute;
-  right: 350px;
+  right: 300px;
   top: 175px;
   border: white 5px solid;
   background-color: white;
@@ -46,7 +46,7 @@ body{
 }
 
 .container {
-  width: 300px;
+  width: 350px;
   height: 250px;
   color: rgb(27, 86, 51);
   background-color: rgb(255, 198, 41);;
@@ -64,14 +64,14 @@ body{
   color: white;
   position: absolute;
   bottom: 300px;
-  right: 425px;
+  right: 370px;
   animation: fadeInDelay 3s;
 
 }
 
 .child {
   font-size: 80px;
-  width: 500px;
+  width: 600px;
   height: 150px;
   display: flex;
 }

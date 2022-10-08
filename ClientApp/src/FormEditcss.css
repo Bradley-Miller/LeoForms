@@ -1,0 +1,49 @@
+/*Dakota- Added CSS for our prototype form*/
+.formHeader{
+
+    font-size: 70px;
+    color:white;
+    text-align: center;
+    width: 400;
+    height: 150px;
+  
+  }
+  
+  .formText{
+  
+    font-size: 20px;
+    color:black ;
+    text-align: center;
+    width: 800px;
+    height: 20x;
+    display: flex;
+  
+  
+  }
+  .formBody{
+  
+    background-color: white;
+    width: 800px;
+    border: 15px solid #FFC629;
+    padding: 50px;
+    margin: auto;
+  
+  
+  }
+  
+  .button{
+  
+    color: #1A5632;
+  
+  }
+  body{
+    background-color: #1A5632;
+    /*margin-left: 850px;
+    margin-right: 300px;
+    width: 200px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: right;*/
+  }
+  
