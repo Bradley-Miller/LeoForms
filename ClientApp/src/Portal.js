@@ -20,23 +20,28 @@ import { Navigate } from "react-router-dom";
         "title": "Hello World!",
     }
   }
-
- function execute(){
-    return gapi.client.request({
-        path: 'https://forms.googleapis.com/v1/forms',
-        method: 'POST', 
-        body: form,
-        headers: {
-            "Content-type": "application/json",
-        },
-    }).then(function() { console.log ("form created!");},
-            function(err) { console.error("form not created");});
-        }
   
+  function GetFetch(){
+    fetch(gapi.client.request({
+      path: 'https://forms.googleapis.com/v1/forms',
+      method: 'POST', 
+      body: form,
+      headers: {
+          "Content-type": "application/json",
+      },
+  }).then(function(response){
+      console.log(response.result.formId);
+      //return(response.result.formId);
+      return sessionStorage.setItem("currentFormId", response.result.formId);
+    },));
+  }
+
 
   function createForm(){
     loadClient();
-    execute();
+   //sessionStorage.setItem("currentFormId", GetFetch());
+   GetFetch();
+   // execute();
     
   }
 
@@ -46,7 +51,9 @@ function Portal() {
 
   const createThisForm = (res) =>{
     createForm();
+    if(sessionStorage.getItem("currentFormId")!=null){
     setShowForm(true);
+    }
   }
   console.log(showForm);
   if(showForm[0]===false){

@@ -30,6 +30,41 @@
   
   
   }
+
+  .CreateTextQuestion{
+    color: black;
+    position: absolute;
+    left: 1100px;
+    top: 500px;
+    width: 235px;
+    background: rgb(255, 198, 41);
+    border: 0px rgb(255, 198, 41) ;
+
+
+  }
+
+  .CreateMultiQuestion{
+    color: black;
+    position: absolute;
+    left: 1100px;
+    top:600px;
+    background: rgb(255, 198, 41);
+    border: 0px rgb(255, 198, 41);
+  }
+
+  .CreateScaleQuestion{
+    color:black;
+    position: absolute;
+    left:1100px;
+    top:700px;
+    width:235px;
+    background: rgb(255, 198, 41);
+    border: 0px rgb(255, 198, 41);
+  }
+
+  .buttons{
+    align-items: center;
+  }
   
   .button{
   
