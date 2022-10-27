@@ -10,7 +10,6 @@ namespace LeoForms.Models
         public int FormId { get; set; }
 
         public string FormURL { get; set; }
-        //bruh
-
+        public string UserId { get; set; }
     }
 }
