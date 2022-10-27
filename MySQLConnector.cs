@@ -4,8 +4,6 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace LeoForms
-
-
 {
     public class MySQLConnector
     {
