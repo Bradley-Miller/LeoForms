@@ -1,35 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
+// eslint-disable-next-line
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import {Route, Routes } from 'react-router-dom';
 import './custom.css'
 import Portal from './Portal';
+import HomeNavBar from './Components/navBar';
 import FormPrototype from './Components/formPrototype';
+// eslint-disable-next-line
 import { googleFormsToJson, GoogleFormProvider, useGoogleForm, useCheckboxInput} from 'react-google-forms-hooks'
+// eslint-disable-next-line
 import Button from 'react-bootstrap/Button';
+// eslint-disable-next-line
 import Form from 'react-bootstrap/Form';
+
 
 //Dakota- This is the json for the Google Form at this link https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform
 //NOTE HERE- For the json object, I have no idea what fvv, pageHistory, fbzx, or action means. I copied and pasted from an example I found here,
 // https://codesandbox.io/s/charming-yonath-lh9kpy?file=/src/form.json however I noticed between the different examples that these values changed.
 //I've tried Googling them with no avail, hopefully we can remove them without an isue...
+// eslint-disable-next-line
 import form from './form.json';
+// eslint-disable-next-line
 import styled from "styled-components";
 
 
 //Dakota-An example I saw online had these style options, just ignore them for the time being
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
 
-const CheckboxContainer = styled.div`
-  display: flex;
+// const CheckboxContainer = styled.div`
+//   display: flex;
 
-  & label {
-    margin: 0 10px;
-  }
-`;
+//   & label {
+//     margin: 0 10px;
+//   }
+// `;
 
 //const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
 
@@ -37,6 +45,7 @@ const CheckboxContainer = styled.div`
 //<button>Create Form (Login with Google)</button>
 //</div>
 
+// eslint-disable-next-line
 function SignInPage(){
   const [ profile, setProfile ] = useState([]);
   const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
@@ -69,8 +78,9 @@ function SignInPage(){
 
   if(profile.name===undefined){
     return (
+      
       <body>
-      <div className = 'container'>
+     <div className = 'containerO'>
         <h1 className='child'>LEO Forms</h1>
       </div>
       <p1 className = 'welcome-text'>Let your forms roar!</p1>
@@ -84,9 +94,10 @@ function SignInPage(){
       />
       </div>
       </body>
-
-
+      
     );
+
+    
   }
   else{
     return (
@@ -132,69 +143,68 @@ function SignInPage(){
 
 //Dakota- This is an example I found online, link is https://codesandbox.io/s/charming-yonath-lh9kpy?file=/src/form.json
 //Another good example is https://codesandbox.io/s/jb3hy which is a wedding invitation/form
-function CheckboxInput({ id }) {
-  const { options } = useCheckboxInput(id);
+// function CheckboxInput({ id }) {
+//   const { options } = useCheckboxInput(id);
 
-  return (
-    <Container>
-      {options.map((o) => (
-        <CheckboxContainer key={o.id}>
-          <input type="checkbox" id={o.id} {...o.registerOption()} />
-          <label htmlFor={o.id}>{o.label}Hello</label>
-        </CheckboxContainer>
-      ))}
-    </Container>
-  );
-}
+//   return (
+//     <Container>
+//       {options.map((o) => (
+//         <CheckboxContainer key={o.id}>
+//           <input type="checkbox" id={o.id} {...o.registerOption()} />
+//           <label htmlFor={o.id}>{o.label}Hello</label>
+//         </CheckboxContainer>
+//       ))}
+//     </Container>
+//   );
+// }
 
 //Dakota- This function would be our form/survey. We send our form object we retrieved from the createField() function in our App() in the 
 //useGoogleForm() hook. We also have an onSubmit that will submit the data to the Google forms
-function CheckExample() {
+// function CheckExample() {
 
-const methods = useGoogleForm({form})
-const onSubmit = async (data) => 
-{
-    await methods.submitToGoogleForms(data);
+// const methods = useGoogleForm({form})
+// const onSubmit = async (data) => 
+// {
+//     await methods.submitToGoogleForms(data);
       
-}
-  return (
-    <GoogleFormProvider>
-    <Form onSubmit = {methods.handleSubmit(onSubmit)}>
-      <header>Do you want to develop an app?</header>
-      <CheckboxInput id = '807685397'/>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-    </GoogleFormProvider>
-  );
-}
-
+// }
+//   return (
+//     <GoogleFormProvider>
+//     <Form onSubmit = {methods.handleSubmit(onSubmit)}>
+//       <header>Do you want to develop an app?</header>
+//       <CheckboxInput id = '807685397'/>
+//       <Button variant="primary" type="submit">
+//         Submit
+//       </Button>
+//     </Form>
+//     </GoogleFormProvider>
+//   );
+// }
 
 function App() {
 
 //Dakota- This fucntion converts the Google form at the link to json and posts it in the console of the webpage
-async function createField(){
-const result = await googleFormsToJson(
-  "https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform"
-)
+// async function createField(){
+// const result = await googleFormsToJson(
+//   "https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform"
+// )
 
-console.log(result.fields)
-}
-createField();
-
-
+// console.log(result.fields)
+// }
+// createField();
 
   return (
-      <Routes>
-        <Route path = "/" element={<SignInPage />}/>
-        {/*Dakota- Warning, /form will give errors*/}
-        <Route path = "/form" element = {<CheckExample/>}/>
-        <Route path = "/formProto" element = {<FormPrototype/>}/>
-        <Route path = '/portal' element ={<Portal />} />
-        
-      </Routes>
-
+  
+    <div>
+      <HomeNavBar/>
+        <Routes>
+          <Route path = "/" element={<SignInPage />}/>
+          {/*Dakota- Warning, /form will give errors*/}
+          {/*<Route path = "/form" element = {<CheckExample/>}/>*/}
+          <Route path = "/formProto" element = {<FormPrototype/>}/>
+          <Route path = '/portal' element ={<Portal />} />
+        </Routes>
+    </div>
   );
 }
   export default App;

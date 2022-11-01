@@ -8,14 +8,13 @@ code {
 }
 
 body{
+  background-color: #ffff;
+  
+}
+
+.navbar-custom {
   background-color: #1A5632;
-  /*margin-left: 850px;
-  margin-right: 300px;
-  width: 200px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: right;*/
+  height: 100px;
 }
 
 .welcome-text{
@@ -44,7 +43,7 @@ body{
   animation: fadeInDelay 3s;
 }
 
-.container {
+.containerO {
   width: 300px;
   height: 250px;
   color: #1A5632;
