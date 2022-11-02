@@ -6,11 +6,10 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-// eslint-disable-next-line
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
+//const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
-
+<script src="https://apis.google.com/js/client.js"></script>
 
 ReactDOM.render(
   <BrowserRouter>

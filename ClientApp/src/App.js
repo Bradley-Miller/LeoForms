@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import {Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './custom.css'
 import Portal from './Portal';
 import HomeNavBar from './Components/navBar';
@@ -39,6 +39,7 @@ import styled from "styled-components";
 //   }
 // `;
 
+
 //const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
 
 //      <div className = 'login-button'>
@@ -60,6 +61,8 @@ function SignInPage(){
      gapi.load('client:auth2', initClient);
  });
 
+  sessionStorage.setItem("currentLoggedIn", profile.name);
+
  
   const onSuccess = (res) => {
     setProfile(res.profileObj);
@@ -80,8 +83,8 @@ function SignInPage(){
     return (
       
       <body>
-     <div className = 'containerO'>
-        <h1 className='child'>LEO Forms</h1>
+      <div className = 'containerO'>
+        <h1 className='child'>ROARING Forms</h1>
       </div>
       <p1 className = 'welcome-text'>Let your forms roar!</p1>
       <div className= 'login-button'>
@@ -101,15 +104,7 @@ function SignInPage(){
   }
   else{
     return (
-      <body>
-      <div className = 'container'>
-        <h1 className='child'>LEO Forms</h1>
-      </div>
-      <p1 className = 'welcome-text'>Let your forms roar!</p1>
-      <div className= 'name'>
-      <h1>name : {profile.name}</h1>
-      </div>
-      </body>
+      <Navigate to={'/portal'}></Navigate>
 
     );
   }

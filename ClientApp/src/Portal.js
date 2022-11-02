@@ -1,19 +1,78 @@
-import React from "react";
-// eslint-disable-next-line
-import App from "./App";
-import SigninPage from "./App";
+import React, { useState } from "react";
+import "./portal.css";
+import { gapi } from 'gapi-script';
+import { Navigate } from "react-router-dom";
+
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyBsGjaICtZoaD65YgQk-o_A4y-jJ94cizU");
+    return gapi.client.load("https://forms.googleapis.com/$discovery/rest?version=v1")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"});
+  });
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+
+  var form = {
+    "info" : {
+        "title": "Hello World!",
+    }
+  }
+  
+  function GetFetch(){
+    fetch(gapi.client.request({
+      path: 'https://forms.googleapis.com/v1/forms',
+      method: 'POST', 
+      body: form,
+      headers: {
+          "Content-type": "application/json",
+      },
+  }).then(function(response){
+      console.log(response.result.formId);
+      //return(response.result.formId);
+      return sessionStorage.setItem("currentFormId", response.result.formId);
+    },));
+  }
+
+
+  function createForm(){
+    loadClient();
+   //sessionStorage.setItem("currentFormId", GetFetch());
+   GetFetch();
+   // execute();
+    
+  }
 
 function Portal() {
-    var profile = SigninPage.profile;
-    if(profile.name!= null){
-        return (
-            <h1>{profile.name}</h1>
-        );
-        }
-    else if(profile.name === "App"){
-        return (
-            <h1>Username is Null</h1>
-        );
+
+  const [showForm, setShowForm] = useState([false]);
+
+  const createThisForm = (res) =>{
+    createForm();
+    if(sessionStorage.getItem("currentFormId")!=null){
+    setShowForm(true);
     }
-}
+  }
+  console.log(showForm);
+  if(showForm[0]===false){
+    return(
+        <div>
+            <header className="header">
+                <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
+            </header>
+        <button className="create-button" onClick={createThisForm}>
+            Create a Form!
+        </button>
+    </div>
+    );
+    }
+   if(showForm===true){
+    return(
+      <Navigate to={'/form'}/>
+     );
+    }
+  }
+
 export default Portal;
