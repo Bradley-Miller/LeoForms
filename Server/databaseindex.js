@@ -15,6 +15,27 @@ const db = mysql.createConnection({
     database: "roaringdb",
 });
 
+app.post("/register", (req, res)=> {
+
+  const FirstName = req.body.FirstName;
+  const LastName = req.body.LastName;
+  const Email = req.body.Email;
+  
+      db.query("INSERT INTO Users (FirstName, LastName, Email) VALUES (?,?,?)",
+      [FirstName, LastName, Email],
+      (err, result) => {
+          console.log(err);
+      }
+      );
+  });
+
+  app.get("/viewUserForms", (req, res)=>{
+    const sqlSelect = "SELECT * FROM Forms WHERE UserID = ?";
+    db.query(sqlSelect, (err, result) => {
+        res.send(result);
+    });
+});
+
 db.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
