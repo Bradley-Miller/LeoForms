@@ -137,8 +137,8 @@ function FormPrototype() {
   return (
     
     <Form>
-        <img src = {require('./seluLogo2.png').default} alt = "SELU Logo" height = {200} width = {300} />
-        <header className='formHeader'>Prototype Survey</header>
+    
+        <header className='formHeader'>Form Creator</header>
         <div className='formBody'>
       <Form.Group className='mb-3' controlId="formBasicEmail">
         <Form.Label className='formText'>Email address</Form.Label>

@@ -4,7 +4,7 @@ import { gapi } from 'gapi-script';
 //import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+//import NavDropdown from 'react-bootstrap/NavDropdown';
 //import Form from 'react-bootstrap/Form';
 import  '../custom.css'
 
@@ -51,9 +51,9 @@ function HomeNavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="container-fluid">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <Nav.Link href="/CreateForm">Create Form</Nav.Link>
+                <Nav.Link href="/Portal">View Forms</Nav.Link>
+                {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
@@ -63,7 +63,7 @@ function HomeNavBar() {
                   <NavDropdown.Item href="#action/3.4">
                     Separated link
                   </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown> */}
                 <Nav.Item className = "ms-auto">
                 <GoogleLogin
                     clientId={clientId}
@@ -86,13 +86,15 @@ function HomeNavBar() {
 
             <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
           
-            <Navbar.Brand href="#home">LEO Forms</Navbar.Brand>
+          <Navbar.Brand href="/">
+              <img src = {require('./SLU-web-header.png').default} alt = "SELU Logo" height = {100} width = {400} />
+          </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="container-fluid">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <Nav.Link href="/CreateForm">Create Form</Nav.Link>
+                <Nav.Link href="#link">View Forms</Nav.Link>
+                {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
@@ -102,7 +104,7 @@ function HomeNavBar() {
                   <NavDropdown.Item href="#action/3.4">
                     Separated link
                   </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown> */}
                 <Nav.Item className = "ms-auto">
                 <GoogleLogout
                     clientId={clientId}

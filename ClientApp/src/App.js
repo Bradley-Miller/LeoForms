@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React /*{ useEffect, useState }*/ from 'react';
 // eslint-disable-next-line
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+// eslint-disable-next-line
 import { gapi } from 'gapi-script';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { /*Navigate,*/ Route, Routes } from 'react-router-dom';
 import './custom.css'
 import Portal from './Portal';
 import HomeNavBar from './Components/navBar';
-import FormPrototype from './Components/formPrototype';
+//import FormPrototype from './Components/formPrototype';
 // eslint-disable-next-line
 import { googleFormsToJson, GoogleFormProvider, useGoogleForm, useCheckboxInput} from 'react-google-forms-hooks'
 // eslint-disable-next-line
 import Button from 'react-bootstrap/Button';
 // eslint-disable-next-line
 import Form from 'react-bootstrap/Form';
+import FormPrototype from "./FormEdit";
+import HomePage from './Components/homePage';
 
 
 //Dakota- This is the json for the Google Form at this link https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform
@@ -47,68 +50,68 @@ import styled from "styled-components";
 //</div>
 
 // eslint-disable-next-line
-function SignInPage(){
-  const [ profile, setProfile ] = useState([]);
-  const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
+// function SignInPage(){
+//   const [ profile, setProfile ] = useState([]);
+//   const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
 
-  useEffect(() => {
-    const initClient = () => {
-          gapi.client.init({
-          clientId: clientId,
-          scope: ''
-        });
-     };
-     gapi.load('client:auth2', initClient);
- });
+//   useEffect(() => {
+//     const initClient = () => {
+//           gapi.client.init({
+//           clientId: clientId,
+//           scope: ''
+//         });
+//      };
+//      gapi.load('client:auth2', initClient);
+//  });
 
-  sessionStorage.setItem("currentLoggedIn", profile.name);
+//   sessionStorage.setItem("currentLoggedIn", profile.name);
 
  
-  const onSuccess = (res) => {
-    setProfile(res.profileObj);
-  };
+//   const onSuccess = (res) => {
+//     setProfile(res.profileObj);
+//   };
 
-  const onFailure = (err) => {
-    console.log('failed', err);
-  };
+//   const onFailure = (err) => {
+//     console.log('failed', err);
+//   };
 
-  /*const logOut = () => {
-    setProfile(null);
-  };
-  */
+//   /*const logOut = () => {
+//     setProfile(null);
+//   };
+//   */
 
-  console.log(profile.name);
+//   console.log(profile.name);
 
-  if(profile.name===undefined){
-    return (
+//   if(profile.name===undefined){
+//     return (
       
-      <body>
-      <div className = 'containerO'>
-        <h1 className='child'>ROARING Forms</h1>
-      </div>
-      <p1 className = 'welcome-text'>Let your forms roar!</p1>
-      <div className= 'login-button'>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Sign in with Google"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-      />
-      </div>
-      </body>
+//       <body>
+//       <div className = 'containerO'>
+//         <h1 className='child'>ROARING Forms</h1>
+//       </div>
+//       <p1 className = 'welcome-text'>Let your forms roar!</p1>
+//       <div className= 'login-button'>
+//       <GoogleLogin
+//         clientId={clientId}
+//         buttonText="Sign in with Google"
+//         onSuccess={onSuccess}
+//         onFailure={onFailure}
+//         cookiePolicy={'single_host_origin'}
+//       />
+//       </div>
+//       </body>
       
-    );
+//     );
 
     
-  }
-  else{
-    return (
-      <Navigate to={'/portal'}></Navigate>
+//   }
+//   else{
+//     return (
+//       <Navigate to={'/portal'}></Navigate>
 
-    );
-  }
-}
+//     );
+//   }
+// }
 //Dakota- The react components for CheckBoxes, from all the examples I've seen the programmer would set his components up with labels and registers
 //the registers would hold an input value and they would use the hook, in this case userCheckboxInput, with the id relating to the Google Form
 //json object to I believe "connect" the two.
@@ -193,11 +196,12 @@ function App() {
     <div>
       <HomeNavBar/>
         <Routes>
-          <Route path = "/" element={<SignInPage />}/>
+          <Route path = "/" element={<HomePage/>}/>
           {/*Dakota- Warning, /form will give errors*/}
           {/*<Route path = "/form" element = {<CheckExample/>}/>*/}
-          <Route path = "/formProto" element = {<FormPrototype/>}/>
-          <Route path = '/portal' element ={<Portal />} />
+          <Route path = "/CreateForm" element = {<FormPrototype/>}/>
+          <Route path = "/Portal" element ={<Portal/>} />
+          
         </Routes>
     </div>
   );

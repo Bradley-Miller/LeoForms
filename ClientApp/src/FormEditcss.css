@@ -2,7 +2,7 @@
 .formHeader{
 
     font-size: 70px;
-    color:white;
+    color: black;
     text-align: center;
     width: 400;
     height: 150px;
@@ -72,7 +72,7 @@
   
   }
   body{
-    background-color: #1A5632;
+    background-color: #ffff;
     /*margin-left: 850px;
     margin-right: 300px;
     width: 200px;
