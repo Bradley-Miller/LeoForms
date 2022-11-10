@@ -71,6 +71,12 @@
     color: #1A5632;
   
   }
+
+  .PopUpBackground{
+    background-color: white;
+    border: 5px solid rgb(255, 198, 41);
+  }
+
   body{
     background-color: #ffff;
     /*margin-left: 850px;

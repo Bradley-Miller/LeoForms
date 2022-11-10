@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./portal.css";
+import Form from "react-bootstrap/Form";
+import Button from 'react-bootstrap/Button';
 import { gapi } from 'gapi-script';
 import { Navigate } from "react-router-dom";
+import Popup from "reactjs-popup";
+
+var title;
 
   function loadClient() {
     gapi.client.setApiKey("AIzaSyBsGjaICtZoaD65YgQk-o_A4y-jJ94cizU");
@@ -15,17 +20,17 @@ import { Navigate } from "react-router-dom";
   });
   // Make sure the client is loaded and sign-in is complete before calling this method.
 
-  var form = {
-    "info" : {
-        "title": "Hello World!",
-    }
-  }
+
   
   function GetFetch(){
     fetch(gapi.client.request({
       path: 'https://forms.googleapis.com/v1/forms',
       method: 'POST', 
-      body: form,
+      body: {
+        "info" : {
+          "title" : title,
+        }
+      },
       headers: {
           "Content-type": "application/json",
       },
@@ -45,9 +50,28 @@ import { Navigate } from "react-router-dom";
     
   }
 
+
+
 function Portal() {
 
+  const [titleLocal, setTitleLocal] = useState('');
+
   const [showForm, setShowForm] = useState([false]);
+
+  const handleTitleChange = event =>{
+      setTitleLocal(event.target.value);
+      title = titleLocal;
+  }
+
+  useEffect(() => {
+    title = titleLocal;
+  }, [titleLocal]);
+
+  const MyHeader = () =>(
+    <header className="header">
+    <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
+    </header>
+)
 
   const createThisForm = (res) =>{
     createForm();
@@ -59,12 +83,16 @@ function Portal() {
   if(showForm[0]===false){
     return(
         <div>
-            <header className="header">
-                <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
-            </header>
-        <button className="create-button" onClick={createThisForm}>
-            Create a Form!
-        </button>
+          <MyHeader/>
+        <div>
+        <Popup trigger={<button className="create-button">Create a Form!</button>} position="top center">
+          <div className="PopUpBackground">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type = "text" onChange = {event => handleTitleChange(event)}/>
+          <Button varient = "Primary" type = "submit" onClick={createThisForm}>Submit</Button>
+          </div>
+        </Popup>
+    </div>
     </div>
     );
     }
