@@ -7,10 +7,12 @@ import Navbar from 'react-bootstrap/Navbar';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 //import Form from 'react-bootstrap/Form';
 import  '../custom.css'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function HomeNavBar() {
 
     const [ profile, setProfile ] = useState([]);
+    const [ loggedIn, setLoggedIn] = useState([false]);
     const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
 
   useEffect(() => {
@@ -25,7 +27,7 @@ function HomeNavBar() {
 
  
   const onSuccess = (res) => {
-    setProfile(res.profileObj);
+    setLoggedIn(true);
     
   };
 
@@ -33,14 +35,15 @@ function HomeNavBar() {
     console.log('failed', err);
   };
 
-  const logOut = () => {
-    setProfile(null);
+  const logOut = (res) => {
+    setLoggedIn(false);
+    gapi.client.init({clientId:''});
+    window.location.replace('/');
   };
   
+console.log(loggedIn);
 
-  console.log(profile.name);
-
-  if (profile.name===undefined){
+  if (loggedIn[0]===false){
     return (
 
           <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
@@ -70,6 +73,7 @@ function HomeNavBar() {
                     buttonText="Sign in with Google"
                     onSuccess={onSuccess}
                     onFailure={onFailure}
+                    isSignedIn={true}
                     cookiePolicy={'single_host_origin'}
                   />
                   </Nav.Item>
@@ -93,7 +97,7 @@ function HomeNavBar() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="container-fluid">
                 <Nav.Link href="/CreateForm">Create Form</Nav.Link>
-                <Nav.Link href="#link">View Forms</Nav.Link>
+                <Nav.Link href="/Portal">View Forms</Nav.Link>
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -110,6 +114,7 @@ function HomeNavBar() {
                     clientId={clientId}
                     buttonText = "Logout"
                     onSuccess = {logOut}
+                    onLogoutSuccess={logOut}
                     onFailure = {onFailure}
                   />
                   
