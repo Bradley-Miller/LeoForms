@@ -98,7 +98,7 @@ function Portal() {
     }
    if(showForm===true){
     return(
-      <Navigate to={'/form'}/>
+      <Navigate to={'/CreateForm'}/>
      );
     }
   }
