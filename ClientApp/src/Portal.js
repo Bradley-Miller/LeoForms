@@ -69,7 +69,7 @@ function Portal() {
 
   const MyHeader = () =>(
     <header className="header">
-    <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
+      <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
     </header>
 )
 
@@ -98,7 +98,7 @@ function Portal() {
     }
    if(showForm===true){
     return(
-      <Navigate to={'/form'}/>
+      <Navigate to={'/CreateForm'}/>
      );
     }
   }
