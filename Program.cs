@@ -1,7 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SpaProxy;
 using System.Runtime.Intrinsics.X86;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
+//using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,14 +18,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseSpa(spaBuilder =>
+/*app.UseSpa(spaBuilder =>
 {
     spaBuilder.Options.SourcePath = "ClientApp";
     if (app.Environment.IsDevelopment())
     {
         spaBuilder.UseProxyToSpaDevelopmentServer("https://localhost:3306");
     }
-});
+});*/
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
