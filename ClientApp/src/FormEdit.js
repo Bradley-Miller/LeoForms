@@ -1,7 +1,10 @@
 import { gapi } from 'gapi-script';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/esm/Col';
 import Popup from 'reactjs-popup';
+import Row from 'react-bootstrap/esm/Row';
+import RangeSlider from 'react-bootstrap-range-slider';
 import { useEffect, useState, useReducer } from 'react';
 
 import './FormEditcss.css'
@@ -164,6 +167,7 @@ function scaleUpdate(){
       }
 
       function ShowForm(){
+        const [ value, setValue ] = useState(lowValue);
         count = itemArray.length;
         //console.log(itemArray[0].title);
         if(itemArray[0].itemId!== undefined){
@@ -211,8 +215,35 @@ function scaleUpdate(){
                   id='b'
                 />
                 </div>
-                : item.questionItem.question.scaleQuestion!==undefined ? <h1>a</h1> 
-                : <Form.Control></Form.Control>}
+                : item.questionItem.question.choiceQuestion!== undefined && item.questionItem.question.choiceQuestion.type === "CHECKBOX" ?
+                <div>
+                  <Form.Check
+                  
+                  label={item.questionItem.question.choiceQuestion.options[0].value}
+                  name="group1"
+                  type="checkbox"
+                  id='a'
+              />
+              <Form.Check
+                
+                label={item.questionItem.question.choiceQuestion.options[1].value}
+                name="group1"
+                type="checkbox"
+                id='b'
+              />
+                </div>
+                : item.questionItem.question.scaleQuestion!==undefined ? 
+                <div>
+                  <Form.Group as={Row}>
+                    <Form.Label column sm="1">{item.questionItem.question.scaleQuestion.lowLabel}</Form.Label>
+                    <Col sm = "6">
+                      <RangeSlider max={item.questionItem.question.scaleQuestion.high}  tooltip='auto' value={value} onChange={e => setValue(e.target.value)}  />
+                    </Col>
+                    <Form.Label column sm ="4">{item.questionItem.question.scaleQuestion.highLabel}</Form.Label>
+                  </Form.Group>
+                </div>
+                : item.questionItem.question.textQuestion!==undefined ? <Form.Control></Form.Control>
+                : <h1>default</h1>}
               </div>)
               }
               </ul>
@@ -396,7 +427,7 @@ function FormPrototype() {
     <div className='buttons'>
 
       <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange={event => handleTitleChange(event)}/>
             <Button variant="Primary" type="submit" onClick={textUpdate}>Create</Button>
@@ -404,7 +435,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateMultiQuestion"> Create Multi-choice Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Option Type</Form.Label>
             <Form.Select id = "optionOneLocal" onChange={event => handleMultiRenderChange(event)}>
               <option>Choose how the question is rendered</option>
@@ -421,7 +452,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateScaleQuestion"> Create Scale Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleScaleTitleChange(event)}/>
             <Form.Label>High Label</Form.Label>
@@ -449,7 +480,7 @@ function FormPrototype() {
     <div className='buttons'>
 
       <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange={event => handleTitleChange(event)}/>
             <Button variant="Primary" type="submit" onClick={textUpdate}>Create</Button>
@@ -457,7 +488,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateMultiQuestion"> Create Multi-choice Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleOptionTitleChange(event)}/>
             <Form.Label>Option Type</Form.Label>
@@ -476,7 +507,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateScaleQuestion"> Create Scale Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleScaleTitleChange(event)}/>
             <Form.Label>High Label</Form.Label>
