@@ -27,6 +27,8 @@ gapi.load('client:auth2', initClient);
 
 var itemArray = ['a'];
 
+
+var documentTitle;
 var count = 0;
 var title;
 var scaleTitle;
@@ -154,7 +156,7 @@ function scaleUpdate(){
     await gapi.client.request({
       path: 'https://forms.googleapis.com/v1/forms/'+sessionStorage.getItem("currentFormId"),
       method: 'GET'
-    }).then(function(response){ console.log(response); itemArray = JSON.parse(response.body).items; console.log(itemArray);},
+    }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; console.log(itemArray);},
         function(err) { console.log("oops!");});
       }
 
@@ -413,7 +415,7 @@ function FormPrototype() {
   const MyForm = () => (
     <Form>
       <img src = {require('./seluLogo2.png').default} alt = "SELU Logo" height = {200} width = {300} />
-      <header className='formHeader'>{sessionStorage.getItem("currentFormTitle")}</header>
+      {documentTitle !== undefined ? <header className='formHeader'>{documentTitle}</header> : <header className='formHeader'>Loading...</header>}
       
     </Form>);
   
@@ -507,7 +509,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateScaleQuestion"> Create Scale Question</Button>} position="left center">
-           <div className = "FormPopUpBackground">
+           <div className = "PopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleScaleTitleChange(event)}/>
             <Form.Label>High Label</Form.Label>
