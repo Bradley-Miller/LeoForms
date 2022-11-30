@@ -33,9 +33,9 @@
 
   .CreateTextQuestion{
     color: black;
-    position: absolute;
+    position: fixed;
     left: 1100px;
-    top: 500px;
+    top: 200px;
     width: 235px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41) ;
@@ -45,18 +45,18 @@
 
   .CreateMultiQuestion{
     color: black;
-    position: absolute;
+    position: fixed;
     left: 1100px;
-    top:600px;
+    top:300px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41);
   }
 
   .CreateScaleQuestion{
     color:black;
-    position: absolute;
+    position: fixed;
     left:1100px;
-    top:700px;
+    top:400px;
     width:235px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41);
@@ -72,10 +72,14 @@
   
   }
 
-  .PopUpBackground{
+  .FormPopUpBackground{
+    position: fixed;
+    left: 900px;
+    top: 200px;
     background-color: white;
     border: 5px solid rgb(255, 198, 41);
   }
+  
 
   body{
     background-color: #ffff;

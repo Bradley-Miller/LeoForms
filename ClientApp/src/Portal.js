@@ -33,6 +33,7 @@ var title;
       body: {
         "info" : {
           "title" : title,
+          "documentTitle": title,
         }
       },
       headers: {
@@ -65,6 +66,7 @@ var title;
 
   useEffect(() => {
     title = titleLocal;
+    sessionStorage.setItem("currentFormTitle", title);
   }, [titleLocal]);
 
   const handleTitleChange = event => {

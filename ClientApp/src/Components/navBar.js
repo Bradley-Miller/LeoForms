@@ -48,7 +48,7 @@ console.log(loggedIn);
     return (
 
           <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
-          
+
             <Navbar.Brand href="/">
               <img src = {require('./SLU-web-header.png').default} alt = "SELU Logo" height = {100} width = {400} />
             </Navbar.Brand>
@@ -57,6 +57,10 @@ console.log(loggedIn);
               <Nav className="container-fluid">
                 <Nav.Link href="/CreateForm">Create Form</Nav.Link>
                 <Nav.Link href="/Portal">View Forms</Nav.Link>
+
+                <Nav.Link href="/EmailBreach">Email Breach</Nav.Link>
+                <Nav.Link href="/PasswordCheck">Password Check</Nav.Link>
+                
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -99,6 +103,10 @@ console.log(loggedIn);
               <Nav className="container-fluid">
                 <Nav.Link href="/CreateForm">Create Form</Nav.Link>
                 <Nav.Link href="/Portal">View Forms</Nav.Link>
+
+                <Nav.Link href="/EmailBreach">Email Breach</Nav.Link>
+                <Nav.Link href="/PasswordCheck">Password Check</Nav.Link>
+                
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
