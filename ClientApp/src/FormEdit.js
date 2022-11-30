@@ -215,6 +215,23 @@ function scaleUpdate(){
                   id='b'
                 />
                 </div>
+                : item.questionItem.question.choiceQuestion!== undefined && item.questionItem.question.choiceQuestion.type === "CHECKBOX" ?
+                <div>
+                  <Form.Check
+                  
+                  label={item.questionItem.question.choiceQuestion.options[0].value}
+                  name="group1"
+                  type="checkbox"
+                  id='a'
+              />
+              <Form.Check
+                
+                label={item.questionItem.question.choiceQuestion.options[1].value}
+                name="group1"
+                type="checkbox"
+                id='b'
+              />
+                </div>
                 : item.questionItem.question.scaleQuestion!==undefined ? 
                 <div>
                   <Form.Group as={Row}>
