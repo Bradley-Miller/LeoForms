@@ -29,6 +29,7 @@ var title;
       body: {
         "info" : {
           "title" : title,
+          "documentTitle": title,
         }
       },
       headers: {
@@ -65,6 +66,7 @@ function Portal() {
 
   useEffect(() => {
     title = titleLocal;
+    sessionStorage.setItem("currentFormTitle", title);
   }, [titleLocal]);
 
   const MyHeader = () =>(

@@ -47,7 +47,7 @@ console.log(loggedIn);
     return (
 
           <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
-          
+
             <Navbar.Brand href="/">
               <img src = {require('./SLU-web-header.png').default} alt = "SELU Logo" height = {100} width = {400} />
             </Navbar.Brand>
