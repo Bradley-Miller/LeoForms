@@ -7,10 +7,11 @@ import Navbar from 'react-bootstrap/Navbar';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 //import Form from 'react-bootstrap/Form';
 import  '../custom.css'
+// eslint-disable-next-line
 import { Navigate, useNavigate } from 'react-router-dom';
 
 function HomeNavBar() {
-
+// eslint-disable-next-line
     const [ profile, setProfile ] = useState([]);
     const [ loggedIn, setLoggedIn] = useState([false]);
     const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"
