@@ -1,7 +1,10 @@
 import { gapi } from 'gapi-script';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/esm/Col';
 import Popup from 'reactjs-popup';
+import Row from 'react-bootstrap/esm/Row';
+import RangeSlider from 'react-bootstrap-range-slider';
 import { useEffect, useState, useReducer } from 'react';
 
 import './FormEditcss.css'
@@ -164,6 +167,7 @@ function scaleUpdate(){
       }
 
       function ShowForm(){
+        const [ value, setValue ] = useState(lowValue);
         count = itemArray.length;
         //console.log(itemArray[0].title);
         if(itemArray[0].itemId!== undefined){
@@ -211,8 +215,18 @@ function scaleUpdate(){
                   id='b'
                 />
                 </div>
-                : item.questionItem.question.scaleQuestion!==undefined ? <h1>a</h1> 
-                : <Form.Control></Form.Control>}
+                : item.questionItem.question.scaleQuestion!==undefined ? 
+                <div>
+                  <Form.Group as={Row}>
+                    <Form.Label column sm="1">{item.questionItem.question.scaleQuestion.lowLabel}</Form.Label>
+                    <Col sm = "6">
+                      <RangeSlider max={item.questionItem.question.scaleQuestion.high}  tooltip='auto' value={value} onChange={e => setValue(e.target.value)}  />
+                    </Col>
+                    <Form.Label column sm ="4">{item.questionItem.question.scaleQuestion.highLabel}</Form.Label>
+                  </Form.Group>
+                </div>
+                : item.questionItem.question.textQuestion!==undefined ? <Form.Control></Form.Control>
+                : <h1>default</h1>}
               </div>)
               }
               </ul>
