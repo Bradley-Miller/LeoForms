@@ -427,7 +427,7 @@ function FormPrototype() {
     <div className='buttons'>
 
       <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange={event => handleTitleChange(event)}/>
             <Button variant="Primary" type="submit" onClick={textUpdate}>Create</Button>
@@ -435,7 +435,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateMultiQuestion"> Create Multi-choice Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Option Type</Form.Label>
             <Form.Select id = "optionOneLocal" onChange={event => handleMultiRenderChange(event)}>
               <option>Choose how the question is rendered</option>
@@ -452,7 +452,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateScaleQuestion"> Create Scale Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleScaleTitleChange(event)}/>
             <Form.Label>High Label</Form.Label>
@@ -480,7 +480,7 @@ function FormPrototype() {
     <div className='buttons'>
 
       <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange={event => handleTitleChange(event)}/>
             <Button variant="Primary" type="submit" onClick={textUpdate}>Create</Button>
@@ -488,7 +488,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateMultiQuestion"> Create Multi-choice Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleOptionTitleChange(event)}/>
             <Form.Label>Option Type</Form.Label>
@@ -507,7 +507,7 @@ function FormPrototype() {
       </Popup>
 
       <Popup trigger={<Button className = "CreateScaleQuestion"> Create Scale Question</Button>} position="left center">
-           <div className = "PopUpBackground">
+           <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange = {event => handleScaleTitleChange(event)}/>
             <Form.Label>High Label</Form.Label>

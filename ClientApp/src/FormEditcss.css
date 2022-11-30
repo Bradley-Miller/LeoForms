@@ -35,7 +35,7 @@
     color: black;
     position: fixed;
     left: 1100px;
-    top: 300px;
+    top: 200px;
     width: 235px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41) ;
@@ -47,7 +47,7 @@
     color: black;
     position: fixed;
     left: 1100px;
-    top:400px;
+    top:300px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41);
   }
@@ -56,7 +56,7 @@
     color:black;
     position: fixed;
     left:1100px;
-    top:500px;
+    top:400px;
     width:235px;
     background: rgb(255, 198, 41);
     border: 0px rgb(255, 198, 41);
@@ -72,13 +72,14 @@
   
   }
 
-  .PopUpBackground{
+  .FormPopUpBackground{
     position: fixed;
     left: 900px;
     top: 200px;
     background-color: white;
     border: 5px solid rgb(255, 198, 41);
   }
+  
 
   body{
     background-color: #ffff;
