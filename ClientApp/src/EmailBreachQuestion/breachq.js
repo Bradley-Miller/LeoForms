@@ -1,10 +1,11 @@
 //import { gapi } from 'gapi-script';
-//import Button from 'react-bootstrap/Button';
-//import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 //import { useEffect, useState } from 'react';
 //import Button from 'react-bootstrap/Button';
 
 import './breachq.css'
+
 
 var email;
 var url;
@@ -39,7 +40,7 @@ function AppendData(data) {
     var mainContainer = document.getElementById("breachData");
     var site = document.createElement("Form.Label");
 
-    if (data == 0) {
+    if (data === 0) {
         mainContainer.innerHTML = "Breaches: ";
         site.innerHTML = '0';
         mainContainer.appendChild(site);
@@ -83,18 +84,45 @@ function populateData(data) {
 
 function EmailBreach() {
     return (
-        <div class="mainDiv">
-            <label class="breachLabel">If you don't know, input the email down below to check</label>
-            <input id="emailBox" class="breachLabel"></input>
-            <button variant="Primary" class="checkbtn" onClick={getBreach}>Check</button><br></br>
-            <label id="breachData" class="breachLabel"></label>
-            <div class="dropdown">
-                <button id="breachButton" class="dropbtn">Sites</button>
-                <div id="dropdownDiv" class="dropdown-content">
-                </div>
-            </div>
-        </div>
-    )
+        //  <div class="mainDiv">
+        //     <label class="breachLabel">If you don't know, input the email down below to check</label>
+        //      <input id="emailBox" class="breachLabel"></input>
+        //      <button variant="Primary" class="checkbtn" onClick={getBreach}>Check</button><br></br>
+        //     <label id="breachData" class="breachLabel"></label>
+        //      <div class="dropdown">
+        //          <button id="breachButton" class="dropbtn">Sites</button>
+        //       <div id="dropdownDiv" class="dropdown-content">
+        //       </div>
+        //    </div>
+        // </div>
+<div class = "formBorder">
+
+<Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Label className = "formHeaderEmail">To check to see if your email address has been leaked, please enter in your email address below:</Form.Label>
+  <Form.Control type="email" id="emailBox" placeholder="Enter email" />
+  <Form.Text className="text-muted">
+    We'll never share your email with anyone else!
+  </Form.Text>
+</Form.Group>
+<Button className = "formButtonE" onClick={getBreach}>
+  Submit
+</Button>
+
+
+<div>
+<label id="breachData" class="breachLabel"></label>
+              <div class="dropdown">
+                 <button id="breachButton" class="dropbtn">Sites</button>
+             <div id="dropdownDiv" class="dropdown-content">
+              </div>
+
+</div>
+
+    </div>
+ </div>
+ 
+
+    );
 }
 
 export default EmailBreach;

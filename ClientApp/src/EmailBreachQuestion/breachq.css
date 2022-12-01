@@ -17,6 +17,37 @@
     margin: auto;
 }
 
+.formBorder{
+
+  background-color: white;
+  width: 800px;
+  border: 15px solid #FFC629;
+  padding: 50px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.formButtonE
+{
+  color: #FFFFFF;
+
+
+  background-color: #1A5632;
+
+}
+
+.formHeaderEmail{
+
+  font-size: 25px;
+  color: black;
+  width: 400;
+  height: 80px;
+
+}
+
 .breachData {
     visibility: hidden;
 }

@@ -1,5 +1,7 @@
 import zxcvbn from 'zxcvbn';
+import Form from 'react-bootstrap/Form';
 import './PasswordStrengthMeter.css';
+import "./passwordChecker.css";
 
 function checker() {
     let password = document.getElementById("user_password");
@@ -8,7 +10,7 @@ function checker() {
     password.addEventListener("input", function() {
       let val = password.value;
       let result = zxcvbn(val).score;
-  
+  // eslint-disable-next-line
       switch (result) {
         case 0:
             colorDiv.style.backgroundColor = "red";
@@ -35,14 +37,26 @@ function checker() {
 
 function PasswordCheck() {
     return (
-        <div class="mainDiv">
-            <label class="passLabel">Check your password</label>
+        // <div class="mainDiv">
+        //     <label class="passLabel">Check your password</label>
 
-            <input type="password" class="passLabel" id="user_password" onFocus={checker}></input>
-            <div class="colorDiv" id="color-div">
-                <p></p>
-            </div>
-        </div>
+        //     <input type="password" class="passLabel" id="user_password" onFocus={checker}></input>
+        //     <div class="colorDiv" id="color-div">
+        //         <p></p>
+        //     </div>
+        // </div>
+
+<div class = "passBorder">
+    <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label className = "passHeader">Please enter in a password here if you want to check it's strength:</Form.Label>
+        <Form.Control type="password" id="user_password" placeholder="Enter password" onFocus={checker}></Form.Control>
+    </Form.Group>
+
+    <div class="colorDiv" id="color-div">
+                 <p></p>
+    </div>
+</div>
+       
     );
 }
 

@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
 import { gapi } from 'gapi-script';
 import { Navigate } from "react-router-dom";
+// eslint-disable-next-line
 import Popup from "reactjs-popup";
 import Modal from 'react-bootstrap/Modal';
 // eslint-disable-next-line
@@ -54,7 +55,7 @@ var title;
    // execute();
     
   }
-
+// eslint-disable-next-line
   function ModalAlert()
   {   
     const [show, setShow] = useState(false);
@@ -62,6 +63,7 @@ var title;
     const handleShow = () => setShow(true);
 
     const [titleLocal, setTitleLocal] = useState('');
+    // eslint-disable-next-line
     const [showForm, setShowForm] = useState([false]);
 
   useEffect(() => {
@@ -117,7 +119,7 @@ var title;
     );
   
   }
-
+// eslint-disable-next-line
   function MyHeader()
   {
     const [show, setShow] = useState(true);
@@ -155,13 +157,13 @@ function Portal() {
   useEffect(() => {
     title = titleLocal;
   }, [titleLocal]);
-
+// eslint-disable-next-line
   const handleTitleChange = event => {
     setTitleLocal(event.target.value);
     title = titleLocal;
   }
   
-
+// eslint-disable-next-line
   const createThisForm = (res) =>{
     createForm();
     if(sessionStorage.getItem("currentFormId")!=null){
@@ -172,17 +174,20 @@ function Portal() {
   /*if(loadClient() === ){*/
     if(showForm[0]===false){
       return(
-        <div>
-            <MyHeader/>
-          <div className="container">
-            <ModalAlert/>
-        {/* <Popup trigger={<button className="create-button">Create a Form!</button>} position="top center"> 
+        <div className="portPage">
+            {/* <MyHeader/> */}
+          <div className="portBorder">
+          <Form.Label className = "portHeader">Hello {sessionStorage.getItem("currentLoggedIn")}! To create a form, please click on the 
+          button below:</Form.Label>
+          <div className="portCenter"><ModalAlert/></div>
+          
+        <Popup trigger={<button className="create-button">Create a Form!</button>} position="top center"> 
               <div className="PopUpBackground">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type = "text" onChange = {event => handleTitleChange(event)}/>
                 <Button varient = "Primary" type = "submit" onClick={createThisForm}>Submit</Button>
               </div>
-            </Popup> */}
+            </Popup>
           </div>
         </div>
       );

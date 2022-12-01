@@ -161,6 +161,7 @@ function scaleUpdate(){
       }
 
       async function RenderForm() {
+        // eslint-disable-next-line
         var result = await GetFormStuff();
         console.log(itemArray);
         if(itemArray!== undefined && itemArray.length>0){
@@ -285,7 +286,7 @@ function scaleUpdate(){
         }
       }
       }
-
+// eslint-disable-next-line
       var itemNames = itemArray.map(({title}) => <h1>{title}</h1>);
       
 
@@ -643,7 +644,7 @@ function FormPrototype() {
  console.log(itemArray);
   if(itemArray === undefined || itemArray.length===0){
   return (
-    <div>
+    <div className='editBorder'>
     
     
     <div>
@@ -703,12 +704,16 @@ function FormPrototype() {
     <MyForm/>
     <ShowForm></ShowForm>
     
-    <div > 
-    <ModalText/>
+    <div className = "editBorder"> 
+    <text className = "editHeader">Hello!</text>
+      <div className = "editCenter">
+        <ModalText/>
         <ModalMulti/>
         <ModalScale/>
+      </div>
+        
 
-      <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
+      {/* <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
            <div className = "FormPopUpBackground">
             <Form.Label>Title</Form.Label>
             <Form.Control type = "text" onChange={event => handleTitleChange(event)}/>
@@ -749,7 +754,7 @@ function FormPrototype() {
             <Form.Control id = "lowValueLocal" type = "text" onChange={event => handleLowValueChange(event)}/>
             <Button variant="Primary" type="submit" onClick={scaleUpdate}>Create</Button>
            </div> 
-      </Popup>
+      </Popup> */}
     </div>
     </div>
     );

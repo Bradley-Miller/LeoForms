@@ -91,4 +91,38 @@
     align-items: center;
     justify-content: right;*/
   }
+
+  .editBorder{
+  
+    background-color: white;
+    width: 800px;
+    height: 400px;
+    border: 15px solid #FFC629;
+    padding: 50px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+  
+    justify-content: center;
+  }
+
+  .editCenter{
+    margin: auto;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    display:table-row-group;
+  }
+
+  .editHeader{
+
+    font-size: 23px;
+    color: black;
+    width: 400;
+    height: 40px;
+  
+  }
   
