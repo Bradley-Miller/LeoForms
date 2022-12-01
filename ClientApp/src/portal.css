@@ -35,50 +35,45 @@
     top: 400px;
 }
 
-.container {
-    height: 200px;
-    position: relative;
-    border: 3px solid green;
-  }
+
   
   .portHeader{
 
-    font-size: 23px;
+    font-size: 25px;
     color: black;
     width: 400;
     height: 40px;
   
   }
 
-.portPage{
+.portBorder{
+  
+  background-color: white;
+  width: 800px;
+  height: 400px;
+  border: 15px solid #FFC629;
+  padding: 50px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
 
-  width: 100%;
-  text-align: center;
- 
-
+  justify-content: center;
 }
-  .portBorder{
-  
-    background-color: white;
-    width: 800px;
-    height: 400px;
-    border: 15px solid #FFC629;
-    padding: 50px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    display: flex;
-  
-    justify-content: center;
-  }
 
-  .portCenter{
-    margin: auto;
-    position: fixed;
-    top: 50%;
-    left: 45%;
+.portCenter{
+  margin: auto;
+  position: fixed;
+  top: 40%;
+  left: 35%;
+  display:grid;
+}
 
-    display: flex;
-  }
+.layer1
+{
+  grid-column: 1;
+  grid-row: 1;
+  padding: 25px 25px 25px 25px;
+}

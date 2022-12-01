@@ -84,7 +84,7 @@ var title;
   }
     return (
       <>
-        <Button className="buttonC" onClick={handleShow}>
+        <Button  onClick={handleShow}>
           Create a Form Here!
         </Button>
   
@@ -174,23 +174,27 @@ function Portal() {
   /*if(loadClient() === ){*/
     if(showForm[0]===false){
       return(
-        <div className="portPage">
-            {/* <MyHeader/> */}
+        
+         
           <div className="portBorder">
-          <Form.Label className = "portHeader">Hello {sessionStorage.getItem("currentLoggedIn")}! To create a form, please click on the 
-          button below:</Form.Label>
-          <div className="portCenter"><ModalAlert/></div>
-          
-        <Popup trigger={<button className="create-button">Create a Form!</button>} position="top center"> 
-              <div className="PopUpBackground">
-                <Form.Label>Title</Form.Label>
-                <Form.Control type = "text" onChange = {event => handleTitleChange(event)}/>
-                <Button varient = "Primary" type = "submit" onClick={createThisForm}>Submit</Button>
+            <text className="portHeader">Hello {sessionStorage.getItem("currentLoggedIn")}! To create a form, please click on the
+              button below:</text>
+              <div className="portCenter">
+                <div className="layer1"><ModalAlert /></div>
+
               </div>
-            </Popup>
-          </div>
-        </div>
-      );
+            </div>
+          );
+              /* <Popup trigger={<button className="create-button">Create a Form!</button>} position="top center"> 
+                  <div className="PopUpBackground">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type = "text" onChange = {event => handleTitleChange(event)}/>
+                    <Button varient = "Primary" type = "submit" onClick={createThisForm}>Submit</Button>
+                  </div>
+                </Popup> */
+         
+        
+      
     }
       
      else if(showForm===true){

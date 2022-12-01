@@ -80,6 +80,17 @@
     border: 5px solid rgb(255, 198, 41);
   }
   
+  .formPos
+  {
+    margin: auto;
+    position: absolute;
+    top: 131%;
+    left: 70%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+  
+
+  }
 
   body{
     background-color: #ffff;
@@ -96,13 +107,13 @@
   
     background-color: white;
     width: 800px;
-    height: 400px;
+    height: 500px;
     border: 15px solid #FFC629;
     padding: 50px;
     margin: auto;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 20%;
     transform: translateX(-50%) translateY(-50%);
     display: flex;
   
@@ -112,17 +123,36 @@
   .editCenter{
     margin: auto;
     position: fixed;
-    top: 30%;
+    top: 33%;
     left: 30%;
-    display:table-row-group;
+    display:grid;
+  }
+
+  .layer1, .layer2, .layer3
+  {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 25px 25px 25px 25px;
+  }
+
+  .layer2
+  {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .layer3
+  {
+    grid-column: 1;
+    grid-row: 3;
   }
 
   .editHeader{
 
-    font-size: 23px;
+    font-size: 25px;
     color: black;
     width: 400;
-    height: 40px;
+    height: 60px;
   
   }
   

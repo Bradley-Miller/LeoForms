@@ -1,17 +1,21 @@
+// eslint-disable-next-line
 import { gapi } from 'gapi-script';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/esm/Col';
+// eslint-disable-next-line
 import Popup from 'reactjs-popup';
 import Row from 'react-bootstrap/esm/Row';
 import RangeSlider from 'react-bootstrap-range-slider';
+// eslint-disable-next-line
 import { useEffect, useState, useReducer } from 'react';
 import "./FormSubmitCss.css";
 
+// eslint-disable-next-line
 var count;
 var itemArray = ['a'];
 
-
+// eslint-disable-next-line
 function ShowForm(){
     const [ value, setValue ] = useState();
     count = itemArray.length;

@@ -198,7 +198,7 @@ function scaleUpdate(){
             }
 
           return(
-            <div>
+            <div className='formPos'>
               <ul>{itemArray.map(item =>
               <div className='formBody'>
                 <Form.Label>{item.title}</Form.Label>
@@ -331,7 +331,7 @@ function ModalText()
       Create a Text Question Here!
     </Button><Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Creating Text Question:</Modal.Title>
+          <Modal.Title>Creating a Text Question:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -493,7 +493,7 @@ function ModalScale()
       Create a Scale Question Here!
     </Button><Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Creating Scale Question:</Modal.Title>
+          <Modal.Title>Creating a Scale Question:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -654,10 +654,13 @@ function FormPrototype() {
     <div className='editBorder'>
     
     
-    <div>
-        <ModalText/>
-        <ModalMulti/>
-        <ModalScale/>
+    <div className='editCenter'>
+      <div className='layer1'><ModalText/></div>
+      <div className='layer2'><ModalMulti/></div>
+      <div className='layer3'><ModalScale/></div>
+        
+        
+        
 
 
       {/* <Popup trigger={<Button className = "CreateTextQuestion"> Create Text Question</Button>} position="left center">
@@ -708,15 +711,16 @@ function FormPrototype() {
   if(itemArray.length>0){
     return(
       <div>
-    <MyForm/>
+    
     <ShowForm></ShowForm>
     
     <div className = "editBorder"> 
-    <text className = "editHeader">Hello!</text>
+    <text className = "editHeader">Hello! To add questions to your form, select the type of question you would like to add below: </text>
       <div className = "editCenter">
-        <ModalText/>
-        <ModalMulti/>
-        <ModalScale/>
+        <div className='layer1'><ModalText/></div>
+        <div className='layer2'><ModalMulti/></div>
+        <div className = 'layer3'><ModalScale/></div>
+        
       </div>
         
 

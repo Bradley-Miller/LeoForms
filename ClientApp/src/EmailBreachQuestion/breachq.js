@@ -104,7 +104,7 @@ function EmailBreach() {
     We'll never share your email with anyone else!
   </Form.Text>
 </Form.Group>
-<Button className = "formButtonE" onClick={getBreach}>
+<Button onClick={getBreach}>
   Submit
 </Button>
 
