@@ -7,11 +7,14 @@ import Row from 'react-bootstrap/esm/Row';
 import RangeSlider from 'react-bootstrap-range-slider';
 import { useEffect, useState, useReducer } from 'react';
 import "./FormSubmitCss.css";
+import $ from 'jquery';
 
-var count;
+var count=0;
 var itemArray = ['aa'];
 var documentTitle;
 var formID;
+var responderUriFormName;
+var formIdsForResponses = [];
 
 function ShowForm(){
     const [ value, setValue ] = useState();
@@ -33,12 +36,14 @@ function ShowForm(){
           itemQuestionType.push("choiceQuestion");
         }
         }
-
+        TryToLookAtForm();
       return(
         <div>
           <ul>{itemArray.map(item =>
           <div className='formBody'>
+          <form action={'https://docs.google.com' + responderUriFormName +'/formResponse'} method="POST">  
             <Form.Label>{item.title}</Form.Label>
+            <div>
             {item.questionItem.question.choiceQuestion!== undefined && item.questionItem.question.choiceQuestion.type === "DROP_DOWN" ? 
             <Form.Select>
               <option>Choose an option</option>
@@ -89,23 +94,64 @@ function ShowForm(){
                 <Form.Label column sm ="4">{item.questionItem.question.scaleQuestion.highLabel}</Form.Label>
               </Form.Group>
             </div>
-            : item.questionItem.question.textQuestion!==undefined ? <Form.Control></Form.Control>
+            : item.questionItem.question.textQuestion!==undefined ? <div class='item'><input type='input' name={'entry.'+formIdsForResponses[count]} {...count++}></input> </div>
             : <h1>default</h1>}
+            </div>
+             <button type='submit' value="Join">Submit</button>
+          </form>
           </div>)
           }
           </ul>
-          <Button></Button>
         </div>
       );
   }
 }
 
+function SubmitForm(){
+  fetch(responderUriFormName, {
+    method: "POST",
+    headers: {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+},
+}
+)
+}
+
+function TryToLookAtForm(){
+  $.get('http://localhost:8010/proxy' + responderUriFormName + '/viewform', function(html) {
+     // Loop through elements you want to scrape content from
+  $(html).find(".Qr7Oae").each(function() {
+    var stringThis = $(this).html();
+    //console.log(stringThis);
+    stringThis = stringThis.toString();
+    console.log(stringThis);
+    console.log(stringThis.length);
+    var stringBuildUp = '';
+    stringThis = stringThis.substring(60, 150);
+    for(var i = 0; i<stringThis.length; i++){
+      if(stringThis[i]==='1' || stringThis[i]=== '2' 
+      ||stringThis[i]=== '3' ||stringThis[i]=== '4' ||stringThis[i]=== '5' ||
+      stringThis[i]=== '6' ||stringThis[i]=== '7' ||stringThis[i]=== '8' ||stringThis[i] ==='9'){
+        stringBuildUp = stringBuildUp.concat(stringThis[i]);
+      }
+    }
+    console.log(stringThis);
+    console.log(stringBuildUp);
+    formIdsForResponses.push(stringBuildUp);
+  });
+  });
+}
+
+
 function GetFormStuff(e){
   e.preventDefault();
+  gapi.client.setToken({access_token: gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token});
   gapi.client.request({
     path: 'https://forms.googleapis.com/v1/forms/'+formID,
-    method: 'GET'
-  }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; console.log(itemArray);},
+    method: 'GET',
+    authorization: sessionStorage.getItem("accessTokenCurrent")
+  }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; responderUriFormName = JSON.parse(response.body).responderUri; responderUriFormName = responderUriFormName.substring(23, (responderUriFormName.length-9)); console.log(responderUriFormName); TryToLookAtForm(); console.log(itemArray);},
       function(err) { console.log("oops!");});
     }
 
@@ -120,7 +166,7 @@ function FormSubmit(){
     </Form>);
   
   const AskForFormID = () => (
-    <div className='enterAForm'>
+    <div className='enterAFormButton'>
     <Button variant="Primary" type="submit" onClick={(e) => GetFormStuff(e)}>Submit</Button>
   </div>
   );
@@ -130,12 +176,13 @@ function FormSubmit(){
   const [formIDlocal, setFormIDLocal] = useState('');
 
   
-  const [, forceUpdate2] = useReducer(x => x + 1, 0);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   function handleClick() {
-    forceUpdate2();
+    forceUpdate();
   }
 
+  setTimeout(handleClick, 5000);
 
   const handleFormIDChange = event => {
     setFormIDLocal(event.target.value);
@@ -148,9 +195,9 @@ function FormSubmit(){
 
   if(itemArray[0].title === undefined || itemArray.length===0){
         return(
-          <div>
+          <div className='enterAForm'>
           <Form>
-            <Form.Label>Enter a Form-ID to Take a Form</Form.Label>
+            <Form.Label>Enter a Form-ID to take a Form</Form.Label>
             <Form.Control type='text' onChange={event => handleFormIDChange(event)}></Form.Control>
             <AskForFormID/>
         </Form>

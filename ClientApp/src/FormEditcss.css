@@ -8,6 +8,13 @@
     height: 150px;
   
   }
+
+  .linkForForm{
+    position: absolute;
+    display: flex;
+    top: 400px;
+    left: 350px;
+  }
   
   .formText{
   

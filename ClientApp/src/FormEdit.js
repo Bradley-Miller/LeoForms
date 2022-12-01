@@ -151,12 +151,14 @@ function scaleUpdate(){
           function(err) { console.error("form not created");}); count++;
 }
 
+var formId;
+
    async function GetFormStuff(){
 
     await gapi.client.request({
       path: 'https://forms.googleapis.com/v1/forms/'+sessionStorage.getItem("currentFormId"),
       method: 'GET'
-    }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; console.log(itemArray);},
+    }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; formId = JSON.parse(response.body).formId; console.log(itemArray);},
         function(err) { console.log("oops!");});
       }
 
@@ -421,6 +423,7 @@ function FormPrototype() {
     <Form>
       <img src = {require('./seluLogo2.png').default} alt = "SELU Logo" height = {200} width = {300} />
       {documentTitle !== undefined ? <header className='formHeader'>{documentTitle}</header> : <header className='formHeader'>Loading...</header>}
+      {formId !== undefined ? <p1 className='linkForForm'>{"Share this for others to take the form: " +formId}</p1> : <h1></h1>}
       
     </Form>);
   

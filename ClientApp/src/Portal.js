@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import "./portal.css";
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
@@ -55,6 +55,12 @@ var title;
 
 function Portal() {
 
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  function handleClick() {
+    forceUpdate();
+  }
+
   const [titleLocal, setTitleLocal] = useState('');
 
   const [showForm, setShowForm] = useState([false]);
@@ -71,7 +77,7 @@ function Portal() {
 
   const MyHeader = () =>(
     <header className="header">
-      <p1>Hello {sessionStorage.getItem("currentLoggedIn")}</p1>
+      <p1>Hello User</p1>
     </header>
 )
 
@@ -80,6 +86,7 @@ function Portal() {
     if(sessionStorage.getItem("currentFormId")!=null){
     setShowForm(true);
     }
+    handleClick();
   }
   console.log(showForm);
   if(showForm[0]===false){

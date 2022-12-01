@@ -18,16 +18,18 @@ function HomeNavBar() {
   useEffect(() => {
     const initClient = () => {
           gapi.client.init({
-          clientId: clientId,
-          scope: 'https://www.googleapis.com/auth/drive'
+          //clientId: clientId,
+          //scope: 'https://www.googleapis.com/auth/drive'
         });
      };
      gapi.load('client:auth2', initClient);
  });
+
+ //console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token); 
  
   const onSuccess = (res) => {
     setLoggedIn(true);
-    
+    //gapi.client.setToken({access_token:  console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token)});
   };
 
   const onFailure = (err) => {
@@ -43,6 +45,7 @@ function HomeNavBar() {
 console.log(loggedIn);
 
   if (loggedIn[0]===false){
+    console.log(sessionStorage.getItem("accessTokenCurrent")); 
     return (
 
           <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
@@ -89,6 +92,10 @@ console.log(loggedIn);
 
     else
     {
+      console.log(sessionStorage.getItem("accessTokenCurrent")); 
+     // console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token); 
+     // gapi.client.setToken({access_token:  console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token)});
+      //sessionStorage.setItem("access_token", gapi.auth2.getAuthInstance().currentUser)
         return (
 
             <Navbar variant = "dark" className = "navbar-custom"  expand="lg">
