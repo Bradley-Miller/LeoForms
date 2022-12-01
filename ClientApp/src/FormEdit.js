@@ -18,7 +18,7 @@ const clientId = "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleuserc
 const initClient = () => {
   gapi.client.init({
   clientId: clientId,
-  scope: ''
+  scope: 'https://www.googleapis.com/auth/drive'
 });
 };
 

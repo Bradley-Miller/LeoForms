@@ -21,7 +21,7 @@ var title;
   }
 
   gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com"});
+    gapi.auth2.init({client_id: "372360721408-3lne1a7i7pd8jbeno7ds5dj9907jhqe3.apps.googleusercontent.com", scope: 'https://www.googleapis.com/auth/drive'});
   });
   // Make sure the client is loaded and sign-in is complete before calling this method.
 
