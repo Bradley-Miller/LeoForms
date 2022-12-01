@@ -6,6 +6,10 @@ import { gapi } from 'gapi-script';
 import { /*Navigate,*/ Route, Routes } from 'react-router-dom';
 import './custom.css'
 import Portal from './Portal';
+
+import EmailBreach from './EmailBreachQuestion/breachq';
+import PasswordCheck from './Password Question/passwordCheck';
+
 import HomeNavBar from './Components/navBar';
 //import FormPrototype from './Components/formPrototype';
 // eslint-disable-next-line
@@ -201,7 +205,10 @@ function App() {
           {/*<Route path = "/form" element = {<CheckExample/>}/>*/}
           <Route path = "/CreateForm" element = {<FormPrototype/>}/>
           <Route path = "/Portal" element ={<Portal/>} />
+
           <Route path = "/OpenForm" element ={<FormSubmit/>} />
+          <Route path = "/EmailBreach" element ={<EmailBreach/>} />
+          <Route path = "/PasswordCheck" element ={<PasswordCheck/>} />
         </Routes>
     </div>
   );
