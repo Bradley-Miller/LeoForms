@@ -57,10 +57,10 @@ console.log(loggedIn);
               <Nav className="container-fluid">
                 <Nav.Link href="/CreateForm">Create Form</Nav.Link>
                 <Nav.Link href="/Portal">View Forms</Nav.Link>
-
+                <Nav.Link href="/OpenForm">Open Form</Nav.Link>
                 <Nav.Link href="/EmailBreach">Email Breach</Nav.Link>
                 <Nav.Link href="/PasswordCheck">Password Check</Nav.Link>
-                
+               
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -103,6 +103,9 @@ console.log(loggedIn);
               <Nav className="container-fluid">
                 <Nav.Link href="/CreateForm">Create Form</Nav.Link>
                 <Nav.Link href="/Portal">View Forms</Nav.Link>
+
+                <Nav.Link href="/OpenForm">Open Form</Nav.Link>
+
 
                 <Nav.Link href="/EmailBreach">Email Breach</Nav.Link>
                 <Nav.Link href="/PasswordCheck">Password Check</Nav.Link>

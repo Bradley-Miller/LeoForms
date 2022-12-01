@@ -20,9 +20,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormPrototype from "./FormEdit";
 import HomePage from './Components/homePage';
-// eslint-disable-next-line
-import modal from './Components/Modal';
-
+import FormSubmit from './FormSubmit';
 
 //Dakota- This is the json for the Google Form at this link https://docs.google.com/forms/d/e/1FAIpQLSe0R3jF4XiYcibT52udCcBun09NTpNw3rECWLsNG_9Wz-pw_A/viewform
 //NOTE HERE- For the json object, I have no idea what fvv, pageHistory, fbzx, or action means. I copied and pasted from an example I found here,
@@ -207,9 +205,10 @@ function App() {
           {/*<Route path = "/form" element = {<CheckExample/>}/>*/}
           <Route path = "/CreateForm" element = {<FormPrototype/>}/>
           <Route path = "/Portal" element ={<Portal/>} />
+          <Route path = "/OpenForm" element ={<FormSubmit/>} />
           <Route path = "/EmailBreach" element ={<EmailBreach/>} />
           <Route path = "/PasswordCheck" element ={<PasswordCheck/>} />
-          <Route path = "/Modal" element ={<modal/>} />
+          
         </Routes>
     </div>
   );
