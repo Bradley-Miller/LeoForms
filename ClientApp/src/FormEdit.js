@@ -25,7 +25,7 @@ gapi.load('client:auth2', initClient);
 
 
 
-var itemArray = ['a'];
+var itemArray = ["placeholderData"];
 
 
 var documentTitle;
@@ -170,7 +170,12 @@ function scaleUpdate(){
 
       function ShowForm(){
         const [ value, setValue ] = useState(lowValue);
-        count = itemArray.length;
+        if(itemArray[0].itemId!== undefined){
+          count = itemArray.length;
+        }
+        else{
+          count = 0;
+        }
         //console.log(itemArray[0].title);
         if(itemArray[0].itemId!== undefined){
           var itemQuestionId = [];
@@ -291,7 +296,7 @@ function scaleUpdate(){
 
       
 
-      setTimeout(RenderForm, 3000);
+      setInterval(RenderForm, 3000);
      // setInterval(GetFormStuff, 3000);
       
 
