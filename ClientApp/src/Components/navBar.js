@@ -24,7 +24,6 @@ function HomeNavBar() {
      };
      gapi.load('client:auth2', initClient);
  });
-
  
   const onSuccess = (res) => {
     setLoggedIn(true);

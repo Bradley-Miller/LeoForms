@@ -296,7 +296,6 @@ function scaleUpdate(){
 
       
 
-      setInterval(RenderForm, 3000);
      // setInterval(GetFormStuff, 3000);
       
 
@@ -310,6 +309,7 @@ function FormPrototype() {
 
   function handleClick() {
     forceUpdate();
+    RenderForm();
   }
 
   setTimeout(handleClick, 5000);

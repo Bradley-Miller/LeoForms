@@ -9,8 +9,9 @@ import { useEffect, useState, useReducer } from 'react';
 import "./FormSubmitCss.css";
 
 var count;
-var itemArray = ['a'];
-
+var itemArray = ['aa'];
+var documentTitle;
+var formID;
 
 function ShowForm(){
     const [ value, setValue ] = useState();
@@ -99,28 +100,71 @@ function ShowForm(){
   }
 }
 
-
-
-
-
+function GetFormStuff(e){
+  e.preventDefault();
+  gapi.client.request({
+    path: 'https://forms.googleapis.com/v1/forms/'+formID,
+    method: 'GET'
+  }).then(function(response){ console.log(response); documentTitle = JSON.parse(response.body).info.title; itemArray = JSON.parse(response.body).items; console.log(itemArray);},
+      function(err) { console.log("oops!");});
+    }
 
 var loadForm = false;
 
-
 function FormSubmit(){
 
+  const MyForm = () => (
+    <Form>
+      <img src = {require('./seluLogo2.png').default} alt = "SELU Logo" height = {200} width = {300} />
+      {documentTitle !== undefined ? <header className='formHeader'>{documentTitle}</header> : <header className='formHeader'>Loading...</header>}
+    </Form>);
+  
+  const AskForFormID = () => (
+    <div className='enterAForm'>
+    <Button variant="Primary" type="submit" onClick={(e) => GetFormStuff(e)}>Submit</Button>
+  </div>
+  );
 
-    if(loadForm === false){
+
+  const [loadFormLocal, setLoadFormLocal] = useState(false);
+  const [formIDlocal, setFormIDLocal] = useState('');
+
+  
+  const [, forceUpdate2] = useReducer(x => x + 1, 0);
+
+  function handleClick() {
+    forceUpdate2();
+  }
+
+
+  const handleFormIDChange = event => {
+    setFormIDLocal(event.target.value);
+    formID = formIDlocal;
+  }
+
+  useEffect(() => {
+    formID = formIDlocal;
+  }, [formIDlocal]);
+
+  if(itemArray[0].title === undefined || itemArray.length===0){
         return(
-            <Form>
-                <Form.Label>
-                    hi
-                </Form.Label>
-            </Form>
+          <div>
+          <Form>
+            <Form.Label>Enter a Form-ID to Take a Form</Form.Label>
+            <Form.Control type='text' onChange={event => handleFormIDChange(event)}></Form.Control>
+            <AskForFormID/>
+        </Form>
+        </div>
         );
     }
     else{
-
+      console.log(itemArray);
+      return(
+      <div>
+        <MyForm/>
+        <ShowForm/>
+      </div>
+      );
     }
 
 }
